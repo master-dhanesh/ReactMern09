@@ -1,8 +1,10 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { taskcontext } from "../context/TaskContext";
 
-const Create = (props) => {
-    const tasks = props.tasks;
-    const settasks = props.settasks;
+const Create = () => {
+    const [tasks, settasks] = useContext(taskcontext);
+    // const tasks = props.tasks;
+    // const settasks = props.settasks;
 
     const [title, settitle] = useState("");
     const [status, setstatus] = useState("incomplete");

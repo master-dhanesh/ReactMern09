@@ -1,8 +1,19 @@
-# React + Vite
+<!-- steps to implement context -->
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+1. Create context component (context/TaskContext.jsx)
 
-Currently, two official plugins are available:
+2. Wrap the <App /> in main.jsx with TaskContext
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+3. in TaskContext.jsx we will get props.children, return the props.children from TaskContext.jsx
+
+4. in order to create context use
+   export const taskcontext(contextname) = createContext(null). out of the function
+
+5. Wrap the props.children with taskcontext.Provider and provide the value attribute, value={yourvalue}
+   <taskcontext.Provider value={[x,usex]}>
+   {props.children}
+   </taskcontext.Provider>
+
+6.In order to use the context value in any component
+import useContext and taskcontext(exported context) and save in the varibale to use it
+const [x,usex] = useContext(taskcontext)

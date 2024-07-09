@@ -1,9 +1,11 @@
+import { useContext } from "react";
 import css from "../App.module.css";
+import { taskcontext } from "../context/TaskContext";
 
-const Show = (props) => {
+const Show = () => {
     // const tasks = props.tasks;
     // const settasks = props.settasks;
-    const { tasks, settasks } = props;
+    const [tasks, settasks] = useContext(taskcontext);
 
     const deletehandler = (i) => {
         const copytasks = [...tasks];
