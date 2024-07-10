@@ -13,7 +13,8 @@
       <Route path="*" element={<Component />} / > 
    </Routes>
 
-4. <Link to =""></Link>
+4. <Link to =""></Link> 
+   <NavLink className={(s) => s.active ? "":""}  to=""><Link>
 5. useNavigate(""/number) to redirect
    useLocation() for getting pathname
    useParams form dynamic data
