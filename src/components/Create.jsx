@@ -1,7 +1,9 @@
 import { useContext, useState } from "react";
 import { taskcontext } from "../context/TaskContext";
+import { useNavigate } from "react-router-dom";
 
 const Create = () => {
+    const navigate = useNavigate();
     const [tasks, settasks] = useContext(taskcontext);
     // const tasks = props.tasks;
     // const settasks = props.settasks;
@@ -18,9 +20,12 @@ const Create = () => {
         copytasks.push(newtask);
         settasks(copytasks);
 
-        settitle("");
-        setstatus("incomplete");
-        setdescription("");
+        // redirect to /show
+        navigate("/show");
+
+        // settitle("");
+        // setstatus("incomplete");
+        // setdescription("");
     };
 
     return (

@@ -1,8 +1,11 @@
 import { useContext } from "react";
 import css from "../App.module.css";
 import { taskcontext } from "../context/TaskContext";
+import { Link, Outlet, useLocation } from "react-router-dom";
 
 const Show = () => {
+    const location = useLocation();
+    console.log(location);
     // const tasks = props.tasks;
     // const settasks = props.settasks;
     const [tasks, settasks] = useContext(taskcontext);
@@ -29,7 +32,11 @@ const Show = () => {
                         {t.title}
                     </span>
                     <span className="text-xl flex gap-x-3">
-                        <i style={mycss} className="ri-pencil-line"></i>
+                        <Link
+                            to={`${location.pathname}/${i}`}
+                            style={mycss}
+                            className="ri-pencil-line"
+                        ></Link>
                         <i
                             onClick={() => deletehandler(i)}
                             className="ri-close-fill"
@@ -46,6 +53,8 @@ const Show = () => {
                 Pending Tasks
             </h1>
             <ul className="list-decimal">{rendertasks}</ul>
+            <hr />
+            <Outlet />
         </>
     );
 };
