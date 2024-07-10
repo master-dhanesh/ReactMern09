@@ -8,7 +8,6 @@
       <Route path="/" element={<Component />} / > 
       <Route path="/parent" element={<Component />} >
       <Route path="/parent/child/:id" element={<Component />} / > 
-      
        </Routes> 
       <Route path="*" element={<Component />} / > 
    </Routes>
@@ -18,3 +17,4 @@
 5. useNavigate(""/number) to redirect
    useLocation() for getting pathname
    useParams form dynamic data
+6. <Outlet /> - to get the child component in Parent Component
