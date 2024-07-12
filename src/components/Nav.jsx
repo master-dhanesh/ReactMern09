@@ -27,6 +27,13 @@ const Nav = () => {
             >
                 Show
             </NavLink>
+            <NavLink
+                style={(s) => ({ fontWeight: s.isActive ? "bold" : "normal" })}
+                className={(s) => (s.isActive ? "text-red-400" : "")}
+                to="/scroll"
+            >
+                Infinite Scroll
+            </NavLink>
         </nav>
     );
 };

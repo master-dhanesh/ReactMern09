@@ -2,10 +2,11 @@ import { useEffect, useState } from "react";
 import axios from "../utils/axios";
 
 const Home = () => {
+    const [page, setpage] = useState(1);
     const [images, setimages] = useState(null);
     const getImages = async () => {
         try {
-            const { data } = await axios.get("/v2/list?page=1&limit=12");
+            const { data } = await axios.get(`/v2/list?page=${page}&limit=12`);
             setimages(data);
         } catch (error) {
             console.log(error);
@@ -13,25 +14,31 @@ const Home = () => {
     };
 
     useEffect(() => {
-        // create /mount
-        console.log("Create.jsx Mounted");
-        if (!images) getImages();
-        return () => {
-            // destroy / unmount
-            // alert("DO you want to leave this site?");
-            console.log("Create.jsx Unmounted");
-        };
-    }, [images]);
+        getImages();
+    }, [page]);
+
     console.log("state >>>>", images);
     return (
         <div>
-            <h1 className="mb-5 text-3xl">Home</h1>
-            {/* <button
-                className="px-5 py-2 bg-red-300 text-white"
-                onClick={getImages}
-            >
-                Get Images
-            </button> */}
+            <h1 className="mb-5 text-3xl">Gallery</h1>
+            <div className="min-h-[70vh] flex gap-5 images flex-wrap">
+                {images
+                    ? images.map((i) => (
+                          <img
+                              className="w-[23%]"
+                              key={i.id}
+                              src={i.download_url}
+                          />
+                      ))
+                    : "Loading..."}
+            </div>
+            <div className="my-10 flex justify-center gap-x-3">
+                <button onClick={() => page > 1 && setpage(page - 1)}>
+                    Prev
+                </button>
+                <p>{page}</p>
+                <button onClick={() => setpage(page + 1)}>Next</button>
+            </div>
         </div>
     );
 };

@@ -5,6 +5,7 @@ import Show from "./components/Show";
 import Home from "./components/Home";
 import Nav from "./components/Nav";
 import Update from "./components/Update";
+import Gallery from "./components/Gallery";
 
 const App = () => {
     return (
@@ -14,6 +15,7 @@ const App = () => {
             <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/create" element={<Create />} />
+                <Route path="/scroll" element={<Gallery />} />
                 {/* <Route path="/show" element={<Show />} />
                 <Route path="/show/:index" element={<Update />} /> */}
 
