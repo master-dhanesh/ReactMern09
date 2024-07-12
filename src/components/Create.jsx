@@ -1,14 +1,11 @@
-import axios from "../utils/axios";
-
-import { useContext, useState } from "react";
+import { useContext, useRef, useState } from "react";
 import { taskcontext } from "../context/TaskContext";
 import { useNavigate } from "react-router-dom";
 
 const Create = () => {
+    const titleref = useRef();
     const navigate = useNavigate();
     const [tasks, settasks] = useContext(taskcontext);
-    // const tasks = props.tasks;
-    // const settasks = props.settasks;
 
     const [title, settitle] = useState("");
     const [status, setstatus] = useState("incomplete");
@@ -22,12 +19,7 @@ const Create = () => {
         copytasks.push(newtask);
         settasks(copytasks);
 
-        // redirect to /show
         navigate("/show");
-
-        // settitle("");
-        // setstatus("incomplete");
-        // setdescription("");
     };
 
     return (
@@ -40,12 +32,19 @@ const Create = () => {
                 className=" mx-auto bg-zinc-200 p-5 "
             >
                 <input
+                    ref={titleref}
                     type="text"
                     className="mb-5 block rounded-lg p-3 border w-1/2"
                     placeholder="Title"
                     onChange={(e) => settitle(e.target.value)}
                     value={title}
                 />
+                {titleref.current && titleref.current.value.length < 5 && (
+                    <p className="text-red-400">
+                        Title must have atlest 4 characters
+                    </p>
+                )}
+
                 <label htmlFor="" className="block mb-5">
                     <input
                         name="status"
